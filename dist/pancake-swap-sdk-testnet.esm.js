@@ -18,6 +18,8 @@ var ChainId;
 (function (ChainId) {
   ChainId[ChainId["MAINNET"] = 56] = "MAINNET";
   ChainId[ChainId["TESTNET"] = 97] = "TESTNET";
+  ChainId[ChainId["ARBITRUM_GOERLI"] = 421613] = "ARBITRUM_GOERLI";
+  ChainId[ChainId["ARBITRUM_MAINNET"] = 42161] = "ARBITRUM_MAINNET";
 })(ChainId || (ChainId = {}));
 
 var TradeType;
@@ -35,8 +37,8 @@ var Rounding;
   Rounding[Rounding["ROUND_UP"] = 2] = "ROUND_UP";
 })(Rounding || (Rounding = {}));
 
-var FACTORY_ADDRESS = '0x46E9aD48575d08072E9A05a9BDE4F22973628A8E';
-var INIT_CODE_HASH = '0xfc65440d009dec7c2a9e2707cff95a0ff3bb14653698c4a01003000aa6d1f54a';
+var FACTORY_ADDRESS = '0xFEd39579d1e65F11e262456bd2226d41b608FE4D';
+var INIT_CODE_HASH = '0x62b8188ed1dfe9ef0270a646604c2cd7cc600d57d67bf578a8c433dc38779b35';
 var MINIMUM_LIQUIDITY = /*#__PURE__*/JSBI.BigInt(1000); // exports for internal consumption
 
 var ZERO = /*#__PURE__*/JSBI.BigInt(0);
@@ -366,7 +368,7 @@ function Currency(decimals, symbol, name) {
  * The only instance of the base class `Currency`.
  */
 
-Currency.ETHER = /*#__PURE__*/new Currency(18, 'BNB', 'BNB');
+Currency.ETHER = /*#__PURE__*/new Currency(18, 'ETH', 'ETH');
 var ETHER = Currency.ETHER;
 
 var _WETH;
@@ -432,7 +434,7 @@ function currencyEquals(currencyA, currencyB) {
     return currencyA === currencyB;
   }
 }
-var WETH = (_WETH = {}, _WETH[ChainId.MAINNET] = /*#__PURE__*/new Token(ChainId.MAINNET, '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd', 18, 'WBNB', 'Wrapped BNB'), _WETH[ChainId.TESTNET] = /*#__PURE__*/new Token(ChainId.TESTNET, '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd', 18, 'WBNB', 'Wrapped BNB'), _WETH);
+var WETH = (_WETH = {}, _WETH[ChainId.MAINNET] = /*#__PURE__*/new Token(ChainId.MAINNET, '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd', 18, 'WBNB', 'Wrapped BNB'), _WETH[ChainId.TESTNET] = /*#__PURE__*/new Token(ChainId.TESTNET, '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd', 18, 'WBNB', 'Wrapped BNB'), _WETH[ChainId.ARBITRUM_GOERLI] = /*#__PURE__*/new Token(ChainId.ARBITRUM_GOERLI, '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6', 18, 'WETH', 'Wrapped Ether'), _WETH[ChainId.ARBITRUM_MAINNET] = /*#__PURE__*/new Token(ChainId.ARBITRUM_MAINNET, '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1', 18, 'WETH', 'Wrapped Ether'), _WETH);
 
 var _toSignificantRoundin, _toFixedRounding;
 var Decimal = /*#__PURE__*/toFormat(_Decimal);
@@ -755,7 +757,7 @@ var Pair = /*#__PURE__*/function () {
   function Pair(tokenAmountA, tokenAmountB) {
     var tokenAmounts = tokenAmountA.token.sortsBefore(tokenAmountB.token) // does safety checks
     ? [tokenAmountA, tokenAmountB] : [tokenAmountB, tokenAmountA];
-    this.liquidityToken = new Token(tokenAmounts[0].token.chainId, Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token), 18, 'Cake-LP', 'Pancake LPs');
+    this.liquidityToken = new Token(tokenAmounts[0].token.chainId, Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token), 18, 'Frost-LP', 'Frost LPs');
     this.tokenAmounts = tokenAmounts;
   }
 
@@ -1564,4 +1566,4 @@ var Fetcher = /*#__PURE__*/function () {
 }();
 
 export { ChainId, Currency, CurrencyAmount, ETHER, FACTORY_ADDRESS, Fetcher, Fraction, INIT_CODE_HASH, InsufficientInputAmountError, InsufficientReservesError, MINIMUM_LIQUIDITY, Pair, Percent, Price, Rounding, Route, Router, Token, TokenAmount, Trade, TradeType, WETH, currencyEquals, inputOutputComparator, tradeComparator };
-//# sourceMappingURL=sdk.esm.js.map
+//# sourceMappingURL=pancake-swap-sdk-testnet.esm.js.map

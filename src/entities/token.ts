@@ -64,5 +64,7 @@ export const WETH = {
     'WBNB',
     'Wrapped BNB'
   ),
-  [ChainId.TESTNET]: new Token(ChainId.TESTNET, '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd', 18, 'WBNB', 'Wrapped BNB')
+  [ChainId.TESTNET]: new Token(ChainId.TESTNET, '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd', 18, 'WBNB', 'Wrapped BNB'),
+  [ChainId.ARBITRUM_GOERLI]: new Token(ChainId.ARBITRUM_GOERLI, '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.ARBITRUM_MAINNET]: new Token(ChainId.ARBITRUM_MAINNET, '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1', 18, 'WETH', 'Wrapped Ether')
 }
